@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 5208722633984186989}
   - component: {fileID: 5208722633984186990}
   - component: {fileID: 5208722633984186991}
+  - component: {fileID: 1697070360617901381}
   m_Layer: 0
   m_Name: Platform Left
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -2.47, y: 0.69}
@@ -139,3 +140,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.73, y: 0.17}
   m_EdgeRadius: 0
+--- !u!114 &1697070360617901381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208722633984186976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e732c106424cb5c4d9b24a663bfa3871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneBanana: {fileID: 951764528763315999, guid: 546833a1610d88546ac8eb4ccdcbe287,
+    type: 3}
+  bananas: {fileID: 3637152583230720860, guid: ca194d3c76077d242bc81f4f4d6e8180, type: 3}
+  spawnPoint: {fileID: 5208722633180220685}

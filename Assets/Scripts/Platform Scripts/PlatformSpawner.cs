@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ public class PlatformSpawner : MonoBehaviour
 
     [SerializeField]
     private Transform platformParent;
+
+    //more variables to spawn bird enemy
+
+  
     private void Awake()
     {
         if(instance == null)
@@ -34,7 +39,40 @@ public class PlatformSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        last_Y = transform.position.y;
+        SpawnPlatforms();
+    }
+
+    public void SpawnPlatforms()
+    {
+        Vector2 temp = transform.position;
+        GameObject newPlatform = null;
+
+        for (int i=0; i < spawnCount; i++)
+        {
+            temp.y = last_Y;
+
+            //spwan the right platform
+            if (platformSpawned % 2 == 0)
+            {
+                temp.x = UnityEngine.Random.Range(left_X_Min, left_X_Max);
+
+                newPlatform = Instantiate(rightPlatform, temp, Quaternion.identity);
+
+            }
+            else
+            {
+                temp.x = UnityEngine.Random.Range(right_X_Min, right_X_Max);
+
+                newPlatform = Instantiate(leftPlatform, temp, Quaternion.identity);
+            }
+
+            newPlatform.transform.parent = platformParent;
+
+            //Keep new platforms above older ones
+            last_Y += Y_Threshold;
+            platformSpawned++;
+        }
     }
 
     // Update is called once per frame
