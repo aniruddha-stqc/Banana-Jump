@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
@@ -27,8 +28,14 @@ public class PlatformSpawner : MonoBehaviour
     private Transform platformParent;
 
     //more variables to spawn bird enemy
+    [SerializeField]
+    private GameObject Bird;
 
-  
+    //for distance between two birds
+    public float bird_Y = 5.0f;
+    private float bird_X_Min = -2.3f, bird_X_Max = 2.3f;
+
+
     private void Awake()
     {
         if(instance == null)
@@ -45,7 +52,7 @@ public class PlatformSpawner : MonoBehaviour
 
     public void SpawnPlatforms()
     {
-        Vector2 temp = transform.position;
+        UnityEngine.Vector2 temp = transform.position;
         GameObject newPlatform = null;
 
         for (int i=0; i < spawnCount; i++)
@@ -57,14 +64,14 @@ public class PlatformSpawner : MonoBehaviour
             {
                 temp.x = UnityEngine.Random.Range(left_X_Min, left_X_Max);
 
-                newPlatform = Instantiate(rightPlatform, temp, Quaternion.identity);
+                newPlatform = Instantiate(rightPlatform, temp, UnityEngine.Quaternion.identity);
 
             }
             else
             {
                 temp.x = UnityEngine.Random.Range(right_X_Min, right_X_Max);
 
-                newPlatform = Instantiate(leftPlatform, temp, Quaternion.identity);
+                newPlatform = Instantiate(leftPlatform, temp, UnityEngine.Quaternion.identity);
             }
 
             newPlatform.transform.parent = platformParent;
@@ -73,6 +80,20 @@ public class PlatformSpawner : MonoBehaviour
             last_Y += Y_Threshold;
             platformSpawned++;
         }
+
+        if(UnityEngine.Random.Range(0,2)>0)
+            SpawnBird();
+    }
+
+    private void SpawnBird()
+    {
+        UnityEngine.Vector2 temp = transform.position;
+        temp.x = UnityEngine.Random.Range(bird_X_Min, bird_X_Max);
+        temp.y += bird_Y;
+
+        GameObject newBird = Instantiate(Bird, temp, UnityEngine.Quaternion.identity);
+        //group all bids
+        newBird.transform.parent = platformParent;
     }
 
     // Update is called once per frame

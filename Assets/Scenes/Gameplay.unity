@@ -1672,6 +1672,8 @@ MonoBehaviour:
   rightPlatform: {fileID: 1367649969455404065, guid: 96448762f85b73e48a0b2662cbe61777,
     type: 3}
   platformParent: {fileID: 2145301269}
+  Bird: {fileID: 4801948641863982544, guid: d104caa62494e2d40a39e6b90fec4e04, type: 3}
+  bird_Y: 5
 --- !u!1 &2145301268
 GameObject:
   m_ObjectHideFlags: 0
